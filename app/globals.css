@@ -3,25 +3,54 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --plum: #1a0a2e;
+  --plum-mid: #2d1448;
+  --plum-light: #4a2d6b;
+  --plum-faint: #f0ebf7;
+  --gold: #b8966e;
+  --gold-light: #d4af87;
+  --gold-dim: #8b6f4e;
+  --gold-bg: #faf4ec;
+  --cream: #f7f4f0;
+  --cream-dark: #ede8e0;
+  --cream-border: #e5ddd5;
+  --text-body: #4a2d6b;
+  --text-muted: #9b8baa;
+  --text-strong: #1a0a2e;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: auto;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f7f4f0;
+  color: #1a0a2e;
+  -webkit-font-smoothing: antialiased;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Smooth link underline effect */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #b8966e;
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* GoldButton — subtle glow pulse on hover */
+.btn-gold-solid:hover {
+  box-shadow: 0 0 20px rgba(184, 150, 110, 0.25);
+}
+.btn-gold-outline:hover {
+  box-shadow: 0 0 16px rgba(184, 150, 110, 0.18);
 }
