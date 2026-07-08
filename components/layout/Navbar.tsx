@@ -67,7 +67,7 @@ export default function Navbar() {
           scrolled && "bg-cream/98 shadow-sm backdrop-blur-xl"
         )}
       >
-        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-5 md:px-12">
+        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-4 md:px-12 md:py-5">
           <a
             href="#home"
             className="flex items-center gap-2 transition-transform duration-300 hover:scale-105"

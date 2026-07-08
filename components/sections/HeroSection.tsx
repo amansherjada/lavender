@@ -103,7 +103,7 @@ export default function HeroSection() {
     <section
       ref={sectionRef}
       id="home"
-      className="hero-section relative min-h-screen overflow-hidden"
+      className="hero-section relative min-h-[100dvh] overflow-hidden md:min-h-screen"
     >
       <div className="hero-bg-image absolute inset-0 z-0">
         <Image
@@ -111,22 +111,23 @@ export default function HeroSection() {
           alt="Luxury villa in Abu Dhabi at sunset"
           fill
           priority
-          className="h-full w-full object-cover object-[center_40%]"
+          className="h-full w-full object-cover object-[center_75%] md:object-[center_40%]"
           sizes="100vw"
         />
       </div>
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-cream/95 via-cream/80 to-transparent" />
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-black/10 via-transparent to-black/20" />
+      {/* Mobile: fade top→bottom so villa shows lower half. Desktop: fade left→right */}
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-cream/95 via-cream/70 to-cream/25 md:bg-gradient-to-r md:from-cream/95 md:via-cream/80 md:to-transparent" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-black/10 via-transparent to-black/30" />
 
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-[1280px] flex-col justify-center px-6 pb-24 pt-24 md:px-12">
-        <div className="hero-eyebrow mb-5 flex items-center gap-3">
+      <div className="relative z-10 mx-auto max-w-[1280px] px-5 pb-10 pt-[5.5rem] md:flex md:min-h-screen md:flex-col md:justify-center md:px-12 md:pb-24 md:pt-24">
+        <div className="hero-eyebrow mb-3 flex items-center gap-3 md:mb-5">
           <div className="h-px w-7 bg-gold" />
-          <span className="rounded bg-cream/60 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-gold backdrop-blur-sm">
+          <span className="rounded bg-cream/80 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.2em] text-gold backdrop-blur-sm md:bg-cream/60 md:text-[10px]">
             Abu Dhabi Real Estate
           </span>
         </div>
 
-        <h1 className="font-display text-[72px] font-light leading-[0.9] tracking-[-0.03em] text-plum md:text-[96px] lg:text-[120px]">
+        <h1 className="font-display text-[44px] font-light leading-[0.95] tracking-[-0.03em] text-plum sm:text-[56px] md:text-[96px] md:leading-[0.9] lg:text-[120px]">
           <div className="hero-line-1 block overflow-hidden">
             <span className="inline-block">Find Your</span>
           </div>
@@ -137,12 +138,12 @@ export default function HeroSection() {
           </div>
         </h1>
 
-        <p className="hero-sub mt-8 max-w-[480px] font-body text-[16px] font-light leading-[1.7] text-plum">
+        <p className="hero-sub mt-4 max-w-[480px] font-body text-[14px] font-light leading-[1.65] text-plum md:mt-8 md:text-[16px] md:leading-[1.7]">
           Discover exceptional homes across Abu Dhabi&apos;s most prestigious
           addresses. Sales, leasing, and consultancy — tailored to you.
         </p>
 
-        <div className="hero-search mt-14 max-w-[860px] rounded-2xl border border-cream-border bg-cream/95 p-2 shadow-[0_8px_32px_rgba(26,10,46,0.15)] backdrop-blur-md">
+        <div className="hero-search mt-6 max-w-[860px] rounded-2xl border border-cream-border bg-cream/95 p-2 shadow-[0_8px_32px_rgba(26,10,46,0.15)] backdrop-blur-md md:mt-14">
           <div className="mb-2 flex gap-1">
             {heroSearchTabs.map((tab, i) => (
               <button
@@ -150,9 +151,9 @@ export default function HeroSection() {
                 type="button"
                 onClick={() => setActiveTab(i)}
                 className={cn(
-                  "flex-1 px-3 py-2.5 font-mono text-[9px] uppercase tracking-[0.15em] transition-colors sm:flex-none sm:px-5 sm:text-[10px]",
+                  "flex-1 rounded-lg px-2 py-2 font-mono text-[8px] uppercase tracking-[0.12em] transition-colors sm:px-3 sm:py-2.5 sm:text-[9px] md:flex-none md:rounded-xl md:px-5 md:text-[10px]",
                   activeTab === i
-                    ? "rounded-xl bg-plum text-gold"
+                    ? "bg-plum text-gold"
                     : "text-plum/60 hover:text-plum"
                 )}
               >
@@ -172,7 +173,7 @@ export default function HeroSection() {
                 <div
                   key={field.label}
                   className={cn(
-                    "flex flex-col justify-center px-4 py-3 md:flex-1 md:px-5 md:py-3.5",
+                    "flex flex-col justify-center px-3 py-2.5 md:flex-1 md:px-5 md:py-3.5",
                     i % 2 === 0 && "border-r border-plum/10",
                     i < 2 && "border-b border-plum/10 md:border-b-0",
                     i < 3 && "md:border-r md:border-plum/10"
@@ -181,7 +182,7 @@ export default function HeroSection() {
                   <span className="mb-1 font-mono text-[9px] uppercase tracking-[0.15em] text-plum/40">
                     {field.label}
                   </span>
-                  <span className="truncate font-body text-[14px] font-normal text-plum md:text-[15px]">
+                  <span className="truncate font-body text-[13px] font-normal text-plum md:text-[15px]">
                     {field.value}
                   </span>
                 </div>
@@ -189,25 +190,25 @@ export default function HeroSection() {
             </div>
             <button
               type="button"
-              className="w-full shrink-0 rounded-xl bg-plum px-8 py-3.5 font-mono text-[11px] uppercase tracking-[0.15em] text-gold shadow-none transition-colors hover:bg-plum-mid md:ml-2 md:w-auto md:self-center"
+              className="w-full shrink-0 rounded-xl bg-plum px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-gold shadow-none transition-colors hover:bg-plum-mid md:ml-2 md:w-auto md:self-center md:px-8 md:py-3.5 md:text-[11px]"
             >
               Search
             </button>
           </div>
         </div>
 
-        <div className="mt-14 flex flex-wrap items-center gap-4">
+        <div className="mt-6 grid grid-cols-2 gap-2.5 md:mt-14 md:flex md:flex-wrap md:items-center md:gap-4">
           {heroStats.map((stat, i) => (
             <div
               key={stat.label}
-              className="hero-stat rounded-xl bg-cream/70 px-6 py-3 backdrop-blur-sm"
+              className="hero-stat rounded-xl bg-cream/80 px-4 py-2.5 backdrop-blur-sm md:bg-cream/70 md:px-6 md:py-3"
             >
               <p
-                className={`stat-number-${i} font-mono text-[36px] font-normal leading-none text-plum`}
+                className={`stat-number-${i} font-mono text-[26px] font-normal leading-none text-plum md:text-[36px]`}
               >
                 0{stat.suffix}
               </p>
-              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-plum/60">
+              <p className="mt-1 font-mono text-[8px] uppercase tracking-[0.12em] text-plum/60 md:mt-2 md:text-[10px] md:tracking-[0.15em]">
                 {stat.label}
               </p>
             </div>
