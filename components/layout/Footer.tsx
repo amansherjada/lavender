@@ -8,7 +8,13 @@ import { scrollReveal } from "@/lib/scrollReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const siteLinks = ["About", "Rent", "Buy", "Agent", "Contact"];
+const siteLinks = [
+  { label: "About", href: "/about" },
+  { label: "Rent", href: "/rent" },
+  { label: "Buy", href: "/buy" },
+  { label: "Agents", href: "/agents" },
+  { label: "Contact", href: "/contact" },
+];
 
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null);
@@ -69,12 +75,12 @@ export default function Footer() {
             </p>
             <ul className="space-y-3">
               {siteLinks.map((link) => (
-                <li key={link}>
+                <li key={link.href}>
                   <a
-                    href={`#${link.toLowerCase()}`}
+                    href={link.href}
                     className="font-body text-[13px] text-[#7A6B8A] transition hover:text-cream"
                   >
-                    {link}
+                    {link.label}
                   </a>
                 </li>
               ))}

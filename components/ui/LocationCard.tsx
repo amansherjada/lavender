@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import SectionLabel from "@/components/ui/SectionLabel";
 import GoldButton from "@/components/ui/GoldButton";
 import { cn } from "@/lib/utils";
@@ -10,12 +11,14 @@ interface LocationCardProps {
   name: string;
   image: string;
   className?: string;
+  href?: string;
 }
 
 export default function LocationCard({
   name,
   image,
   className,
+  href,
 }: LocationCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -33,6 +36,26 @@ export default function LocationCard({
       y: (mouseX / (rect.width / 2)) * 6,
     });
   };
+
+  const inner = (
+    <div className="group relative h-full cursor-pointer overflow-hidden rounded-2xl">
+      <Image
+        src={image}
+        alt={name}
+        fill
+        className="object-cover transition-transform duration-700 group-hover:scale-105"
+        sizes="(max-width: 768px) 100vw, 50vw"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-plum/85 via-plum/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 p-6">
+        <SectionLabel text="Exclusive" />
+        <h3 className="mb-4 font-display text-[30px] font-light text-white">
+          {name}
+        </h3>
+        <GoldButton variant="outline" label="Explore" size="sm" />
+      </div>
+    </div>
+  );
 
   return (
     <div
@@ -54,23 +77,13 @@ export default function LocationCard({
         setTilt({ x: 0, y: 0 });
       }}
     >
-      <div className="group relative h-full cursor-pointer overflow-hidden rounded-2xl">
-        <Image
-          src={image}
-          alt={name}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-plum/85 via-plum/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-6">
-          <SectionLabel text="Exclusive" />
-          <h3 className="mb-4 font-display text-[30px] font-light text-white">
-            {name}
-          </h3>
-          <GoldButton variant="outline" label="Explore" size="sm" />
-        </div>
-      </div>
+      {href ? (
+        <Link href={href} className="block h-full">
+          {inner}
+        </Link>
+      ) : (
+        inner
+      )}
     </div>
   );
 }

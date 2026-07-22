@@ -73,7 +73,17 @@ function SuccessState() {
   );
 }
 
-export default function InquiryForm() {
+interface InquiryFormProps {
+  defaultInquiryType?: "Purchase" | "Rent";
+  source?: string;
+  compact?: boolean;
+}
+
+export default function InquiryForm({
+  defaultInquiryType,
+  source = "lavenderuae.com – Homepage",
+  compact = false,
+}: InquiryFormProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -118,6 +128,7 @@ export default function InquiryForm() {
   } = useForm<InquiryFormData>({
     resolver: zodResolver(inquirySchema),
     defaultValues: {
+      inquiry_type: defaultInquiryType ?? "",
       gdpr_consent: false,
     },
   });
@@ -140,7 +151,7 @@ export default function InquiryForm() {
         body: JSON.stringify({
           ...data,
           submitted_at: new Date().toISOString(),
-          source: "lavenderuae.com – Homepage",
+          source,
         }),
       });
 
@@ -153,43 +164,61 @@ export default function InquiryForm() {
 
   return (
     <section
-      id="contact"
+      id={compact ? "enquire" : "contact"}
       ref={sectionRef}
-      className="form-section bg-cream py-20 md:py-32 lg:py-40"
+      className={cn(
+        "form-section bg-cream",
+        compact ? "py-16 md:py-24" : "py-20 md:py-32 lg:py-40"
+      )}
     >
       <div className="mx-auto max-w-[1280px] px-6 md:px-12">
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-5">
-          <div className="form-left lg:col-span-2">
-            <SectionLabel text="Get In Touch" />
-            <h2 className="font-display text-[48px] font-light leading-[1.05] tracking-[-0.02em] text-plum">
-              Talk to
-              <br />
-              <em className="italic text-gold">Our Experts.</em>
-            </h2>
-            <p className="mb-10 mt-6 max-w-[360px] font-body text-[15px] font-light leading-[1.7] text-text-body">
-              Send us your requirements and we&apos;ll connect you with the
-              right specialist within 24 hours.
-            </p>
+        <div
+          className={cn(
+            "grid grid-cols-1 gap-16",
+            compact ? "lg:grid-cols-1" : "lg:grid-cols-5"
+          )}
+        >
+          {!compact && (
+            <div className="form-left lg:col-span-2">
+              <SectionLabel text="Get In Touch" />
+              <h2 className="font-display text-[48px] font-light leading-[1.05] tracking-[-0.02em] text-plum">
+                Talk to
+                <br />
+                <em className="italic text-gold">Our Experts.</em>
+              </h2>
+              <p className="mb-10 mt-6 max-w-[360px] font-body text-[15px] font-light leading-[1.7] text-text-body">
+                Send us your requirements and we&apos;ll connect you with the
+                right specialist within 24 hours.
+              </p>
 
-            {[
-              { icon: MapPin, text: "200+ locations across Abu Dhabi" },
-              { icon: Zap, text: "24-hour response guarantee" },
-              { icon: Users, text: "No fees, no pressure" },
-            ].map(({ icon: Icon, text }) => (
-              <div key={text} className="mb-5 flex items-start gap-3">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-cream-border bg-gold-bg">
-                  <Icon size={14} className="text-gold" />
+              {[
+                { icon: MapPin, text: "200+ locations across Abu Dhabi" },
+                { icon: Zap, text: "24-hour response guarantee" },
+                { icon: Users, text: "No fees, no pressure" },
+              ].map(({ icon: Icon, text }) => (
+                <div key={text} className="mb-5 flex items-start gap-3">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-cream-border bg-gold-bg">
+                    <Icon size={14} className="text-gold" />
+                  </div>
+                  <p className="font-body text-[14px] text-text-body">{text}</p>
                 </div>
-                <p className="font-body text-[14px] text-text-body">{text}</p>
+              ))}
+
+              <p className="mt-10 font-mono text-[18px] text-plum">
+                +971 55 433 4369
+              </p>
+            </div>
+          )}
+
+          <div className={compact ? "" : "lg:col-span-3"}>
+            {compact && (
+              <div className="mb-10 text-center">
+                <SectionLabel text="Enquire" centered />
+                <h2 className="font-display text-[36px] font-light tracking-[-0.02em] text-plum md:text-[48px]">
+                  Interested in this property?
+                </h2>
               </div>
-            ))}
-
-            <p className="mt-10 font-mono text-[18px] text-plum">
-              +971 55 433 4369
-            </p>
-          </div>
-
-          <div className="lg:col-span-3">
+            )}
             <div className="form-card rounded-2xl border border-cream-border bg-white p-10">
               {submitted ? (
                 <SuccessState />

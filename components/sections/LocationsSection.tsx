@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionLabel from "@/components/ui/SectionLabel";
 import LocationCard from "@/components/ui/LocationCard";
 import { locations } from "@/lib/data";
+import { cityNameToSlug } from "@/lib/cities";
 import { scrollReveal } from "@/lib/scrollReveal";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -56,17 +57,41 @@ export default function LocationsSection() {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div className="h-[500px]">
-            <LocationCard name={tall.name} image={tall.image} />
+            <LocationCard
+              name={tall.name}
+              image={tall.image}
+              href={
+                cityNameToSlug(tall.name)
+                  ? `/city/${cityNameToSlug(tall.name)}`
+                  : undefined
+              }
+            />
           </div>
           <div className="flex flex-col gap-6">
             {shorts.map((loc) => (
               <div key={loc.id} className="h-[240px]">
-                <LocationCard name={loc.name} image={loc.image} />
+                <LocationCard
+                  name={loc.name}
+                  image={loc.image}
+                  href={
+                    cityNameToSlug(loc.name)
+                      ? `/city/${cityNameToSlug(loc.name)}`
+                      : undefined
+                  }
+                />
               </div>
             ))}
           </div>
           <div className="col-span-1 h-[280px] md:col-span-2">
-            <LocationCard name={wide.name} image={wide.image} />
+            <LocationCard
+              name={wide.name}
+              image={wide.image}
+              href={
+                cityNameToSlug(wide.name)
+                  ? `/city/${cityNameToSlug(wide.name)}`
+                  : undefined
+              }
+            />
           </div>
         </div>
       </div>

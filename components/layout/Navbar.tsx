@@ -69,7 +69,7 @@ export default function Navbar() {
       >
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-4 md:px-12 md:py-5">
           <a
-            href="#home"
+            href="/"
             className="flex items-center gap-2 transition-transform duration-300 hover:scale-105"
           >
             <div className="h-px w-6 bg-gold" />
@@ -91,7 +91,12 @@ export default function Navbar() {
           </div>
 
           <div className="hidden lg:block">
-            <GoldButton variant="solid" label="List Property" size="sm" />
+            <GoldButton
+              variant="solid"
+              label="List Property"
+              size="sm"
+              href="/contact"
+            />
           </div>
 
           <button
@@ -125,6 +130,7 @@ export default function Navbar() {
               variant="solid"
               label="List Property"
               size="sm"
+              href="/contact"
               onClick={() => setMenuOpen(false)}
             />
           </div>

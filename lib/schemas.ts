@@ -19,3 +19,17 @@ export const inquirySchema = z.object({
 });
 
 export type InquiryFormData = z.infer<typeof inquirySchema>;
+
+export const contactSchema = z.object({
+  first_name: z.string().min(1, "First name is required"),
+  last_name: z.string().min(1, "Last name is required"),
+  email: z.string().email("Please enter a valid email"),
+  phone: z.string().min(7, "Please enter a valid phone number"),
+  subject: z.string().min(1, "Subject is required"),
+  message: z.string().min(10, "Please enter a message (min 10 characters)"),
+  gdpr_consent: z
+    .boolean()
+    .refine((val) => val === true, { message: "You must agree to continue" }),
+});
+
+export type ContactFormData = z.infer<typeof contactSchema>;

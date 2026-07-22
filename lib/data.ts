@@ -253,12 +253,12 @@ export const bedOptions = ["Studio", "1", "2", "3", "4", "5+"];
 export const bathOptions = ["1", "2", "3", "4", "5+"];
 
 export const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Rent", href: "#rent" },
-  { label: "Buy", href: "#buy" },
-  { label: "Locations", href: "#locations" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Rent", href: "/rent" },
+  { label: "Buy", href: "/buy" },
+  { label: "Agents", href: "/agents" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const whyLavenderFeatures = [
