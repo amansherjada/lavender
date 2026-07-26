@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -17,9 +18,26 @@ import { cn } from "@/lib/utils";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroSection() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState(0);
   const [statCounts, setStatCounts] = useState(() => heroStats.map(() => 0));
+  const [propertyType, setPropertyType] = useState(propertyTypes[0]);
+  const [location, setLocation] = useState(heroLocations[0]);
+  const [bedrooms, setBedrooms] = useState(bedroomOptions[0]);
+  const [budget, setBudget] = useState(budgetOptions[0]);
   const sectionRef = useRef<HTMLElement>(null);
+
+  const handleSearch = () => {
+    const params = new URLSearchParams();
+    if (propertyType !== "Any") params.set("type", propertyType);
+    if (location !== "Any") params.set("location", location);
+    if (bedrooms !== "Any") params.set("beds", bedrooms);
+    if (budget !== "Any") params.set("budget", budget);
+
+    const destination = heroSearchTabs[activeTab] === "For Rent" ? "/rent" : "/buy";
+    const query = params.toString();
+    router.push(query ? `${destination}?${query}` : destination);
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -170,10 +188,30 @@ export default function HeroSection() {
           <div className="flex flex-col gap-2 md:flex-row md:items-stretch">
             <div className="grid grid-cols-2 md:flex md:flex-1 md:items-stretch">
               {[
-                { label: "Property Type", value: propertyTypes[0] },
-                { label: "Location", value: heroLocations[0] },
-                { label: "Bedrooms", value: bedroomOptions[2] },
-                { label: "Max Budget", value: budgetOptions[0] },
+                {
+                  label: "Property Type",
+                  value: propertyType,
+                  onChange: setPropertyType,
+                  options: propertyTypes,
+                },
+                {
+                  label: "Location",
+                  value: location,
+                  onChange: setLocation,
+                  options: heroLocations,
+                },
+                {
+                  label: "Bedrooms",
+                  value: bedrooms,
+                  onChange: setBedrooms,
+                  options: bedroomOptions,
+                },
+                {
+                  label: "Max Budget",
+                  value: budget,
+                  onChange: setBudget,
+                  options: budgetOptions,
+                },
               ].map((field, i) => (
                 <div
                   key={field.label}
@@ -184,17 +222,26 @@ export default function HeroSection() {
                     i < 3 && "md:border-r md:border-plum/10"
                   )}
                 >
-                  <span className="mb-1 font-mono text-[9px] uppercase tracking-[0.15em] text-plum/40">
+                  <label className="mb-1 font-mono text-[9px] uppercase tracking-[0.15em] text-plum/40">
                     {field.label}
-                  </span>
-                  <span className="truncate font-body text-[13px] font-normal text-plum md:text-[15px]">
-                    {field.value}
-                  </span>
+                  </label>
+                  <select
+                    value={field.value}
+                    onChange={(e) => field.onChange(e.target.value)}
+                    className="truncate bg-transparent font-body text-[13px] font-normal text-plum focus:outline-none md:text-[15px]"
+                  >
+                    {field.options.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               ))}
             </div>
             <button
               type="button"
+              onClick={handleSearch}
               className="w-full shrink-0 rounded-xl bg-plum px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-gold shadow-none transition-colors hover:bg-plum-mid md:ml-2 md:w-auto md:self-center md:px-8 md:py-3.5 md:text-[11px]"
             >
               Search

@@ -3,6 +3,7 @@ import { Cormorant_Garamond, DM_Sans, DM_Mono } from "next/font/google";
 import Script from "next/script";
 import CustomCursor from "@/components/layout/CustomCursor";
 import SmoothScroll from "@/components/layout/SmoothScroll";
+import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -109,6 +110,7 @@ export default function RootLayout({
           <CustomCursor />
           {children}
         </SmoothScroll>
+        <WhatsAppButton />
       </body>
     </html>
   );

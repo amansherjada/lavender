@@ -574,3 +574,60 @@ export function getSimilarProperties(
   const pool = sameLocation.length >= limit ? sameLocation : sameType;
   return pool.slice(0, limit);
 }
+
+export interface PropertySearchFilters {
+  type?: string;
+  location?: string;
+  beds?: string;
+  budget?: string;
+}
+
+function bedsMatch(propertyBeds: number, filterBeds?: string): boolean {
+  if (!filterBeds || filterBeds === "Any") return true;
+  if (filterBeds === "Studio") return propertyBeds === 0;
+  if (filterBeds === "5+") return propertyBeds >= 5;
+  return propertyBeds === parseInt(filterBeds, 10);
+}
+
+function budgetMatch(price: string, filterBudget?: string): boolean {
+  if (!filterBudget || filterBudget === "Any") return true;
+  const numeric = parseInt(price.replace(/[^0-9]/g, ""), 10);
+  if (!numeric) return true;
+  switch (filterBudget) {
+    case "Up to AED 1M":
+      return numeric <= 1_000_000;
+    case "AED 1M – 3M":
+      return numeric > 1_000_000 && numeric <= 3_000_000;
+    case "AED 3M – 5M":
+      return numeric > 3_000_000 && numeric <= 5_000_000;
+    case "AED 5M+":
+      return numeric > 5_000_000;
+    default:
+      return true;
+  }
+}
+
+export function filterProperties(
+  list: PropertyListing[],
+  filters: PropertySearchFilters
+): PropertyListing[] {
+  return list.filter((p) => {
+    if (
+      filters.type &&
+      filters.type !== "Any" &&
+      !p.title.toLowerCase().includes(filters.type.toLowerCase())
+    ) {
+      return false;
+    }
+    if (
+      filters.location &&
+      filters.location !== "Any" &&
+      !p.location.toLowerCase().includes(filters.location.toLowerCase())
+    ) {
+      return false;
+    }
+    if (!bedsMatch(p.beds, filters.beds)) return false;
+    if (!budgetMatch(p.price, filters.budget)) return false;
+    return true;
+  });
+}

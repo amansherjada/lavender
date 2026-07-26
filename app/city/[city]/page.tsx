@@ -4,6 +4,7 @@ import { Check } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SectionLabel from "@/components/ui/SectionLabel";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import PropertyCard from "@/components/ui/PropertyCard";
 import CTAStrip from "@/components/ui/CTAStrip";
 import { cities, getCityBySlug } from "@/lib/cities";
@@ -40,7 +41,15 @@ export default function CityPage({ params }: PageProps) {
     <main>
       <Navbar />
 
-      <section className="bg-plum py-32 md:py-40">
+      <Breadcrumbs
+        topPadded
+        items={[
+          { label: "Home", href: "/" },
+          { label: city.title.split(",")[0] },
+        ]}
+      />
+
+      <section className="bg-plum pb-32 pt-8 md:pb-40 md:pt-10">
         <div className="mx-auto max-w-[1280px] px-6 md:px-12">
           <SectionLabel text="Exclusive Location" />
           <h1 className="mt-4 font-display text-[40px] font-light leading-[1.1] tracking-[-0.02em] text-cream md:text-[56px]">

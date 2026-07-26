@@ -9,29 +9,25 @@ export const locations: Location[] = [
   {
     id: "loc-1",
     name: "Saadiyat Island",
-    image:
-      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
+    image: "/images/cities/saadiyat-island.png",
     layout: "tall",
   },
   {
     id: "loc-2",
     name: "Yas Island",
-    image:
-      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80",
+    image: "/images/cities/yas-island.png",
     layout: "short",
   },
   {
     id: "loc-3",
     name: "Al Reef",
-    image:
-      "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&q=80",
+    image: "/images/cities/al-reef.png",
     layout: "short",
   },
   {
     id: "loc-4",
     name: "Al Reem Island",
-    image:
-      "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=80",
+    image: "/images/cities/al-reem-island.png",
     layout: "wide",
   },
 ];
@@ -39,23 +35,26 @@ export const locations: Location[] = [
 export const heroSearchTabs = ["All Status", "For Rent", "For Sale"] as const;
 
 export const propertyTypes = [
+  "Any",
   "Apartment",
   "Villa",
+  "Duplex",
+  "Studio",
   "Townhouse",
   "Penthouse",
-  "Studio",
 ];
 
 export const heroLocations = [
+  "Any",
+  "Al Reem Island",
   "Saadiyat Island",
   "Yas Island",
-  "Al Reem Island",
   "Al Reef",
   "Corniche",
   "Khalifa City",
 ];
 
-export const bedroomOptions = ["Studio", "1", "2", "3", "4", "5+"];
+export const bedroomOptions = ["Any", "Studio", "1", "2", "3", "4", "5+"];
 
 export const budgetOptions = [
   "Any",
