@@ -81,7 +81,12 @@ export default function ContactForm() {
     const webhookUrl = process.env.NEXT_PUBLIC_PABBLY_WEBHOOK_URL;
 
     if (!webhookUrl || webhookUrl.includes("YOUR_KEY")) {
-      setSubmitted(true);
+      console.error(
+        "NEXT_PUBLIC_PABBLY_WEBHOOK_URL is not configured — form submission cannot be delivered."
+      );
+      setSubmitError(
+        "This form isn't fully set up yet. Please call or email us directly instead."
+      );
       return;
     }
 
@@ -98,7 +103,8 @@ export default function ContactForm() {
 
       if (!res.ok) throw new Error("Submission failed");
       setSubmitted(true);
-    } catch {
+    } catch (error) {
+      console.error("Contact form webhook submission failed:", error);
       setSubmitError("Something went wrong. Please try again.");
     }
   };
@@ -225,7 +231,10 @@ export default function ContactForm() {
             )}
           </span>
           <span className="ml-2 font-body text-[13px] text-text-muted">
-            I agree to be contacted about my inquiry
+            I agree to be contacted about my inquiry and to the{" "}
+            <a href="/privacy" className="underline hover:text-plum">
+              Privacy Policy
+            </a>
           </span>
         </label>
         {errors.gdpr_consent && (

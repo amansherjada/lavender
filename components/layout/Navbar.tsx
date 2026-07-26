@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { gsap } from "gsap";
 import GoldButton from "@/components/ui/GoldButton";
@@ -67,26 +69,31 @@ export default function Navbar() {
           scrolled && "bg-cream/98 shadow-sm backdrop-blur-xl"
         )}
       >
-        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-4 md:px-12 md:py-5">
-          <a
+        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-2 md:px-12 md:py-3">
+          <Link
             href="/"
-            className="flex items-center gap-2 transition-transform duration-300 hover:scale-105"
+            className="flex items-center transition-transform duration-300 hover:scale-105"
           >
-            <div className="h-px w-6 bg-gold" />
-            <span className="font-mono text-[13px] uppercase tracking-[0.3em] text-plum">
-              LAVENDER
-            </span>
-          </a>
+            <Image
+              src="/images/logo/lavender-logo-original.svg"
+              alt="Lavender Real Estate"
+              width={160}
+              height={100}
+              priority
+              unoptimized
+              className="h-16 w-auto md:h-20"
+            />
+          </Link>
 
           <div className="hidden items-center gap-8 lg:flex">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="nav-link font-mono text-[10px] uppercase tracking-[0.12em] text-text-muted transition-colors hover:text-plum"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -117,14 +124,14 @@ export default function Navbar() {
         >
           <div ref={linksRef} className="flex flex-col items-center gap-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
                 className="font-mono text-[14px] uppercase tracking-[0.12em] text-text-muted transition-colors hover:text-plum"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <GoldButton
               variant="solid"

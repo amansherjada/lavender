@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Globe, Share2, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import { scrollReveal } from "@/lib/scrollReveal";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -42,30 +44,25 @@ export default function Footer() {
       <div className="mx-auto max-w-[1280px] px-6 md:px-12">
         <div className="footer-grid grid grid-cols-2 gap-12 md:grid-cols-4">
           <div className="footer-col col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2">
-              <div className="h-px w-6 bg-gold" />
-              <span className="font-mono text-[13px] uppercase tracking-[0.3em] text-cream">
-                LAVENDER
-              </span>
-            </div>
+            <Image
+              src="/images/logo/lavender-logo-original.svg"
+              alt="Lavender Real Estate"
+              width={160}
+              height={100}
+              unoptimized
+              className="h-16 w-auto"
+            />
             <p className="mt-5 max-w-[220px] font-body text-[13px] font-light leading-[1.8] text-[#7A6B8A]">
               Lavender Real Estate offers a full range of services — sales,
               leasing, consultancy, and mortgage solutions.
             </p>
             <div className="mt-8 flex gap-3">
-              {[
-                { icon: Globe, href: "#" },
-                { icon: Share2, href: "#" },
-                { icon: Phone, href: "tel:+971554334369" },
-              ].map(({ icon: Icon, href }, i) => (
-                <a
-                  key={i}
-                  href={href}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-plum-mid text-[#7A6B8A] transition hover:border-gold hover:text-gold"
-                >
-                  <Icon size={16} />
-                </a>
-              ))}
+              <a
+                href="tel:+971554334369"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-plum-mid text-[#7A6B8A] transition hover:border-gold hover:text-gold"
+              >
+                <Phone size={16} />
+              </a>
             </div>
           </div>
 
@@ -76,12 +73,12 @@ export default function Footer() {
             <ul className="space-y-3">
               {siteLinks.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
                     className="font-body text-[13px] text-[#7A6B8A] transition hover:text-cream"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -113,13 +110,27 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col justify-between gap-4 border-t border-plum-mid pt-8 sm:flex-row">
+        <div className="mt-16 flex flex-col justify-between gap-4 border-t border-plum-mid pt-8 sm:flex-row sm:items-center">
           <p className="font-mono text-[10px] text-[#5A4B6A]">
             © 2025 Lavender Real Estate. All rights reserved.
           </p>
-          <p className="font-mono text-[10px] text-[#5A4B6A]">
-            Abu Dhabi, UAE
-          </p>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/privacy"
+              className="font-mono text-[10px] text-[#5A4B6A] transition hover:text-cream"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/terms"
+              className="font-mono text-[10px] text-[#5A4B6A] transition hover:text-cream"
+            >
+              Terms &amp; Conditions
+            </Link>
+            <p className="font-mono text-[10px] text-[#5A4B6A]">
+              Abu Dhabi, UAE
+            </p>
+          </div>
         </div>
       </div>
     </footer>

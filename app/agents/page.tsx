@@ -63,7 +63,7 @@ export default function AgentsPage() {
                 <div className="mt-6 grid grid-cols-3 gap-3">
                   {[
                     { label: "Experience", value: agent.experience },
-                    { label: "Languages", value: "4+" },
+                    { label: "Languages", value: agent.languages },
                     { label: "Service Area", value: agent.serviceArea },
                   ].map((stat) => (
                     <div key={stat.label}>

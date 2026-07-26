@@ -29,9 +29,22 @@ export async function generateMetadata({
   if (!property) {
     return { title: "Property Not Found | Lavender Real Estate" };
   }
+  const title = `${property.shortTitle ?? property.title} | ${property.location} | Lavender Real Estate`;
+  const description = property.description.slice(0, 155);
   return {
-    title: `${property.shortTitle ?? property.title} | ${property.location} | Lavender Real Estate`,
-    description: property.description.slice(0, 155),
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [{ url: property.image, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [property.image],
+    },
   };
 }
 
@@ -42,8 +55,37 @@ export default function PropertyPage({ params }: PageProps) {
   const similar = getSimilarProperties(property, 3);
   const inquiryType = property.listingType === "sale" ? "Purchase" : "Rent";
 
+  const propertyJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "RealEstateListing",
+    name: property.title,
+    description: property.description,
+    url: `https://lavenderuae.com/property/${property.slug}`,
+    image: property.image,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: property.location,
+      addressCountry: "AE",
+    },
+    numberOfBedroomsTotal: property.beds,
+    ...(property.baths != null ? { numberOfBathroomsTotal: property.baths } : {}),
+    offers: {
+      "@type": "Offer",
+      price: property.price.replace(/[^0-9.]/g, ""),
+      priceCurrency: "AED",
+      availability:
+        property.status === "For Sale"
+          ? "https://schema.org/InStock"
+          : "https://schema.org/InStock",
+    },
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(propertyJsonLd) }}
+      />
       <Navbar />
 
       <section className="relative h-[50vh] min-h-[360px] w-full md:h-[60vh]">

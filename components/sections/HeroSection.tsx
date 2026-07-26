@@ -18,6 +18,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroSection() {
   const [activeTab, setActiveTab] = useState(0);
+  const [statCounts, setStatCounts] = useState(() => heroStats.map(() => 0));
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -70,8 +71,6 @@ export default function HeroSection() {
       });
 
       heroStats.forEach((stat, i) => {
-        const el = sectionRef.current?.querySelector(`.stat-number-${i}`);
-        if (!el) return;
         const obj = { val: 0 };
         gsap.to(obj, {
           val: stat.value,
@@ -79,7 +78,13 @@ export default function HeroSection() {
           ease: "power2.out",
           delay: 1.4,
           onUpdate: () => {
-            el.textContent = `${Math.round(obj.val)}${stat.suffix}`;
+            const rounded = Math.round(obj.val);
+            setStatCounts((prev) => {
+              if (prev[i] === rounded) return prev;
+              const next = [...prev];
+              next[i] = rounded;
+              return next;
+            });
           },
         });
       });
@@ -119,7 +124,7 @@ export default function HeroSection() {
       <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-cream/95 via-cream/70 to-cream/25 md:bg-gradient-to-r md:from-cream/95 md:via-cream/80 md:to-transparent" />
       <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-black/10 via-transparent to-black/30" />
 
-      <div className="relative z-10 mx-auto max-w-[1280px] px-5 pb-10 pt-[5.5rem] md:flex md:min-h-screen md:flex-col md:justify-center md:px-12 md:pb-24 md:pt-24">
+      <div className="relative z-10 mx-auto max-w-[1280px] px-5 pb-10 pt-24 md:flex md:min-h-screen md:flex-col md:justify-center md:px-12 md:pb-24 md:pt-28">
         <div className="hero-eyebrow mb-3 flex items-center gap-3 md:mb-5">
           <div className="h-px w-7 bg-gold" />
           <span className="rounded bg-cream/80 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.2em] text-gold backdrop-blur-sm md:bg-cream/60 md:text-[10px]">
@@ -206,7 +211,8 @@ export default function HeroSection() {
               <p
                 className={`stat-number-${i} font-mono text-[26px] font-normal leading-none text-plum md:text-[36px]`}
               >
-                0{stat.suffix}
+                {statCounts[i]}
+                {stat.suffix}
               </p>
               <p className="mt-1 font-mono text-[8px] uppercase tracking-[0.12em] text-plum/60 md:mt-2 md:text-[10px] md:tracking-[0.15em]">
                 {stat.label}

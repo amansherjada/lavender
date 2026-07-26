@@ -38,7 +38,7 @@ export const cities: City[] = [
       "Close to Abu Dhabi Airport",
     ],
     image:
-      "https://images.unsplash.com/photo-1580674285054-bed31fd7f9f5?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=80",
   },
   {
     slug: "al-reef",

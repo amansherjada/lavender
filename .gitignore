@@ -31,6 +31,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# reference/business materials — not website code
+/old website details/
+/new logo/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
