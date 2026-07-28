@@ -1,9 +1,14 @@
+import Image from "next/image";
 import { Phone, Mail, Share2 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SectionLabel from "@/components/ui/SectionLabel";
 import CTAStrip from "@/components/ui/CTAStrip";
-import { agents, contactInfo } from "@/lib/agents";
+import { agents } from "@/lib/agents";
+
+function whatsappUrl(number: string) {
+  return `https://wa.me/${number.replace(/\D/g, "")}`;
+}
 
 export const metadata = {
   title: "Our Property Agents | Lavender Real Estate Abu Dhabi",
@@ -31,19 +36,29 @@ export default function AgentsPage() {
       </section>
 
       <section className="bg-cream pb-20 md:pb-32">
-        <div className="mx-auto max-w-[560px] px-6 md:px-12">
+        <div className="mx-auto grid max-w-[960px] grid-cols-1 gap-8 px-6 md:grid-cols-2 md:items-stretch md:px-12">
           {agents.map((agent) => (
             <div
               key={agent.slug}
-              className="overflow-hidden rounded-2xl border border-cream-border bg-white"
+              className="flex h-full flex-col overflow-hidden rounded-2xl border border-cream-border bg-white"
             >
-              <div className="flex h-56 items-center justify-center bg-gradient-to-br from-plum via-plum-mid to-plum-light">
-                <span className="font-display text-[64px] font-light text-gold/80">
-                  {agent.initials}
-                </span>
+              <div className="relative flex aspect-[4/5] items-center justify-center bg-gradient-to-br from-plum via-plum-mid to-plum-light">
+                {agent.photo ? (
+                  <Image
+                    src={agent.photo}
+                    alt={agent.name}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, 480px"
+                  />
+                ) : (
+                  <span className="font-display text-[64px] font-light text-gold/80">
+                    {agent.initials}
+                  </span>
+                )}
               </div>
 
-              <div className="p-8">
+              <div className="flex flex-1 flex-col p-8">
                 <h2 className="font-display text-[22px] text-plum">
                   {agent.name}
                 </h2>
@@ -56,39 +71,44 @@ export default function AgentsPage() {
 
                 <div className="my-5 h-px bg-cream-border" />
 
-                <p className="line-clamp-4 font-body text-[14px] leading-[1.7] text-text-muted">
-                  {agent.bio}
-                </p>
+                {agent.bio && (
+                  <p className="font-body text-[14px] leading-[1.7] text-text-muted">
+                    {agent.bio}
+                  </p>
+                )}
 
                 <div className="mt-6 grid grid-cols-3 gap-3">
                   {[
                     { label: "Experience", value: agent.experience },
                     { label: "Languages", value: agent.languages },
                     { label: "Service Area", value: agent.serviceArea },
-                  ].map((stat) => (
-                    <div key={stat.label}>
-                      <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-text-muted">
-                        {stat.label}
-                      </p>
-                      <p className="mt-1 font-body text-[13px] text-plum">
-                        {stat.value}
-                      </p>
-                    </div>
-                  ))}
+                  ]
+                    .filter((stat) => stat.value)
+                    .map((stat) => (
+                      <div key={stat.label}>
+                        <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-text-muted">
+                          {stat.label}
+                        </p>
+                        <p className="mt-1 font-body text-[13px] text-plum">
+                          {stat.value}
+                        </p>
+                      </div>
+                    ))}
                 </div>
 
-                <div className="my-5 h-px bg-cream-border" />
+                <div className="mt-auto">
+                  <div className="my-5 h-px bg-cream-border" />
 
-                <div className="flex flex-col gap-3">
-                  <a
-                    href={`tel:${agent.mobile.replace(/\s/g, "")}`}
+                  <div className="flex flex-col gap-3">
+                    <a
+                      href={`tel:${agent.mobile.replace(/\s/g, "")}`}
                     className="inline-flex items-center gap-2 font-body text-[14px] text-plum transition hover:text-gold"
                   >
                     <Phone size={16} className="text-gold" />
                     {agent.mobile}
                   </a>
                   <a
-                    href={contactInfo.whatsappUrl}
+                    href={whatsappUrl(agent.whatsapp)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-green-600 px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.15em] text-white transition hover:bg-green-700"
@@ -111,6 +131,7 @@ export default function AgentsPage() {
                     <Mail size={16} className="text-gold" />
                     {agent.email}
                   </a>
+                  </div>
                 </div>
               </div>
             </div>

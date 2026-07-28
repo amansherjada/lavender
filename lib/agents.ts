@@ -10,13 +10,14 @@ export interface Agent {
   license: string;
   languages: string;
   serviceArea: string;
-  experience: string;
-  specialties: string;
-  bio: string;
+  experience?: string;
+  specialties?: string;
+  bio?: string;
   address: string;
-  rating: number;
+  rating?: number;
   slug: string;
   initials: string;
+  photo?: string;
 }
 
 export const agents: Agent[] = [
@@ -41,6 +42,27 @@ export const agents: Agent[] = [
     rating: 5,
     slug: "muhad-aboobucker",
     initials: "MA",
+    photo: "/images/agents/muhad-aboobucker.jpg",
+  },
+  {
+    name: "Vishwa Rasanga",
+    title: "Property Advisor",
+    company: "Lavender Real Estate",
+    mobile: "+971 55 438 9279",
+    office: "+971 55 433 4369",
+    email: "vishwa@lavenderuae.com",
+    whatsapp: "+971 55 438 9279",
+    linkedin:
+      "https://www.linkedin.com/in/vishwa-rasanga-7b0bb0157",
+    license: "202503425619",
+    languages: "English",
+    serviceArea: "Abu Dhabi",
+    bio: "Vishwa Rasanga is a Property Advisor at Lavender Real Estate, dedicated to helping clients navigate Abu Dhabi's property market with clarity and care. Whether guiding a first-time buyer, matching a tenant with the right home, or advising an investor, Vishwa brings a client-first approach to every enquiry — ensuring a smooth, transparent experience from the first conversation through to handover.",
+    address:
+      "Office No. 222, Eldorado Tower Block A, Electra Street, Abu Dhabi",
+    slug: "vishwa-rasanga",
+    initials: "VR",
+    photo: "/images/agents/vishwa-rasanga.jpg",
   },
 ];
 
