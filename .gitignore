@@ -28,6 +28,10 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# google service account credentials — never commit
+*-GCP.json
+lavender-website-GCP.json
+
 # vercel
 .vercel
 

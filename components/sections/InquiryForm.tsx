@@ -137,27 +137,12 @@ export default function InquiryForm({
 
   const onSubmit = async (data: InquiryFormData) => {
     setSubmitError("");
-    const webhookUrl = process.env.NEXT_PUBLIC_PABBLY_WEBHOOK_URL;
-
-    if (!webhookUrl || webhookUrl.includes("YOUR_KEY")) {
-      console.error(
-        "NEXT_PUBLIC_PABBLY_WEBHOOK_URL is not configured — form submission cannot be delivered."
-      );
-      setSubmitError(
-        "This form isn't fully set up yet. Please call or email us directly instead."
-      );
-      return;
-    }
 
     try {
-      const res = await fetch(webhookUrl, {
+      const res = await fetch("/api/inquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...data,
-          submitted_at: new Date().toISOString(),
-          source,
-        }),
+        body: JSON.stringify({ ...data, source }),
       });
 
       if (!res.ok) throw new Error("Submission failed");
