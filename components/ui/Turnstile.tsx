@@ -45,7 +45,14 @@ export default function Turnstile({ onVerify, onExpire }: TurnstileProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!siteKey) return null;
+  if (!siteKey) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn(
+        "NEXT_PUBLIC_TURNSTILE_SITE_KEY is not set at build time — the Turnstile widget will not render."
+      );
+    }
+    return null;
+  }
 
   return (
     <>
