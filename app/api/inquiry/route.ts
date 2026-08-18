@@ -1,10 +1,23 @@
 import { NextResponse } from "next/server";
 import { inquirySchema } from "@/lib/schemas";
 import { appendSheetRow } from "@/lib/googleSheets";
+import { verifyTurnstileToken } from "@/lib/turnstile";
 
 export async function POST(request: Request) {
   const body = await request.json();
-  const { source, ...formFields } = body;
+  const { source, turnstileToken, ...formFields } = body;
+
+  const remoteIp = request.headers.get("cf-connecting-ip") ?? undefined;
+  const humanVerified =
+    typeof turnstileToken === "string" &&
+    (await verifyTurnstileToken(turnstileToken, remoteIp));
+  if (!humanVerified) {
+    return NextResponse.json(
+      { error: "Verification failed. Please try again." },
+      { status: 400 }
+    );
+  }
+
   const parsed = inquirySchema.safeParse(formFields);
 
   if (!parsed.success) {

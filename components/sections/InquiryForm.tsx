@@ -8,6 +8,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionLabel from "@/components/ui/SectionLabel";
 import GoldButton from "@/components/ui/GoldButton";
+import Turnstile from "@/components/ui/Turnstile";
 import {
   inquiryTypes,
   userTypes,
@@ -87,6 +88,7 @@ export default function InquiryForm({
   const sectionRef = useRef<HTMLElement>(null);
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -138,11 +140,16 @@ export default function InquiryForm({
   const onSubmit = async (data: InquiryFormData) => {
     setSubmitError("");
 
+    if (!turnstileToken) {
+      setSubmitError("Please complete the verification check and try again.");
+      return;
+    }
+
     try {
       const res = await fetch("/api/inquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, source }),
+        body: JSON.stringify({ ...data, source, turnstileToken }),
       });
 
       if (!res.ok) throw new Error("Submission failed");
@@ -450,6 +457,13 @@ export default function InquiryForm({
                         {errors.gdpr_consent.message}
                       </p>
                     )}
+                  </div>
+
+                  <div className="form-field">
+                    <Turnstile
+                      onVerify={setTurnstileToken}
+                      onExpire={() => setTurnstileToken("")}
+                    />
                   </div>
 
                   {submitError && (
