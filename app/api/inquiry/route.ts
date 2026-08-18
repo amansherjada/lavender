@@ -16,6 +16,12 @@ export async function POST(request: Request) {
 
   const data = parsed.data;
 
+  // Honeypot: bots fill in every field, including this hidden one. Real users
+  // never see it. Pretend success so bots don't learn they were caught.
+  if (data.website) {
+    return NextResponse.json({ ok: true });
+  }
+
   try {
     await appendSheetRow([
       new Date().toISOString(),

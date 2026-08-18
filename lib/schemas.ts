@@ -16,6 +16,7 @@ export const inquirySchema = z.object({
   gdpr_consent: z
     .boolean()
     .refine((val) => val === true, { message: "You must agree to continue" }),
+  website: z.string().optional(), // honeypot — real users never fill this in
 });
 
 export type InquiryFormData = z.infer<typeof inquirySchema>;

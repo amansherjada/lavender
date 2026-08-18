@@ -215,6 +215,14 @@ export default function InquiryForm({
                 <SuccessState />
               ) : (
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                  <input
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
+                    {...register("website")}
+                  />
                   <div className="form-field">
                     <label className={labelClass}>Inquiry Type</label>
                     <select className={inputClass} {...register("inquiry_type")}>
