@@ -6,7 +6,10 @@
 	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
 	"vars": {
 		"NEXT_PUBLIC_GA_MEASUREMENT_ID": "G-V3SZXC5409",
-		"NEXT_PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAAEUjgVwMgq6ynA3G"
+		"NEXT_PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAAEUjgVwMgq6ynA3G",
+		"GOOGLE_SERVICE_ACCOUNT_EMAIL": "lavender-sheets-writer@lavender-website.iam.gserviceaccount.com",
+		"GOOGLE_SHEET_ID": "1IMOGHEITEKnvRmm441qkrB-D8JbnnvDkVUuNlrfoZew",
+		"GOOGLE_SHEET_TAB_NAME": "Data"
 	},
 	"assets": {
 		"directory": ".open-next/assets",
