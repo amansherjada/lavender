@@ -4,6 +4,10 @@
 	"name": "lavender",
 	"compatibility_date": "2025-12-01",
 	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	"vars": {
+		"NEXT_PUBLIC_GA_MEASUREMENT_ID": "G-V3SZXC5409",
+		"NEXT_PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAAEUjgVwMgq6ynA3G"
+	},
 	"assets": {
 		"directory": ".open-next/assets",
 		"binding": "ASSETS"
