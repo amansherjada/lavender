@@ -87,7 +87,7 @@ export async function appendSheetRow(row: (string | number)[]): Promise<void> {
   }
 
   const accessToken = await getAccessToken();
-  const range = encodeURIComponent(`${tabName}!A:O`);
+  const range = encodeURIComponent(`${tabName}!A:Q`);
   const res = await fetch(
     `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}:append?valueInputOption=USER_ENTERED`,
     {

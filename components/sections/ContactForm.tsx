@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { gsap } from "gsap";
 import { useEffect } from "react";
 import GoldButton from "@/components/ui/GoldButton";
+import Turnstile from "@/components/ui/Turnstile";
 import { contactSchema, type ContactFormData } from "@/lib/schemas";
 import { cn } from "@/lib/utils";
 
@@ -63,6 +64,7 @@ function SuccessState() {
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
 
   const {
     register,
@@ -78,33 +80,23 @@ export default function ContactForm() {
 
   const onSubmit = async (data: ContactFormData) => {
     setSubmitError("");
-    const webhookUrl = process.env.NEXT_PUBLIC_PABBLY_WEBHOOK_URL;
 
-    if (!webhookUrl || webhookUrl.includes("YOUR_KEY")) {
-      console.error(
-        "NEXT_PUBLIC_PABBLY_WEBHOOK_URL is not configured — form submission cannot be delivered."
-      );
-      setSubmitError(
-        "This form isn't fully set up yet. Please call or email us directly instead."
-      );
+    if (!turnstileToken) {
+      setSubmitError("Please complete the verification check and try again.");
       return;
     }
 
     try {
-      const res = await fetch(webhookUrl, {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...data,
-          submitted_at: new Date().toISOString(),
-          source: "lavenderuae.com – Contact Page",
-        }),
+        body: JSON.stringify({ ...data, turnstileToken }),
       });
 
       if (!res.ok) throw new Error("Submission failed");
       setSubmitted(true);
     } catch (error) {
-      console.error("Contact form webhook submission failed:", error);
+      console.error("Contact form submission failed:", error);
       setSubmitError("Something went wrong. Please try again.");
     }
   };
@@ -113,6 +105,14 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+      <input
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
+        {...register("website")}
+      />
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <label className={labelClass}>First Name</label>
@@ -242,6 +242,13 @@ export default function ContactForm() {
             {errors.gdpr_consent.message}
           </p>
         )}
+      </div>
+
+      <div>
+        <Turnstile
+          onVerify={setTurnstileToken}
+          onExpire={() => setTurnstileToken("")}
+        />
       </div>
 
       {submitError && (

@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
-import { inquirySchema } from "@/lib/schemas";
+import { contactSchema } from "@/lib/schemas";
 import { appendSheetRow } from "@/lib/googleSheets";
 import { verifyTurnstileToken } from "@/lib/turnstile";
 
 export async function POST(request: Request) {
   const body = await request.json();
-  const { source, turnstileToken, ...formFields } = body;
+  const { turnstileToken, ...formFields } = body;
 
   const remoteIp = request.headers.get("cf-connecting-ip") ?? undefined;
   const humanVerified =
@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const parsed = inquirySchema.safeParse(formFields);
+  const parsed = contactSchema.safeParse(formFields);
 
   if (!parsed.success) {
     return NextResponse.json(
@@ -41,24 +41,24 @@ export async function POST(request: Request) {
       data.first_name,
       data.last_name,
       data.email,
-      data.mobile,
-      data.user_type,
-      data.inquiry_type,
-      data.property_type,
-      data.location,
-      data.min_size ?? "",
-      data.max_price ?? "",
-      data.beds ?? "",
-      data.baths ?? "",
+      data.phone,
+      "",
+      "General Inquiry",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
       data.gdpr_consent ? "Yes" : "No",
-      typeof source === "string" ? source : "",
-      "",
-      "",
+      "lavenderuae.com – Contact Page",
+      data.subject,
+      data.message,
     ]);
   } catch (error) {
-    console.error("Failed to write inquiry to Google Sheet:", error);
+    console.error("Failed to write contact submission to Google Sheet:", error);
     return NextResponse.json(
-      { error: "Failed to submit inquiry" },
+      { error: "Failed to submit message" },
       { status: 502 }
     );
   }

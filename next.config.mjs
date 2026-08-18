@@ -25,7 +25,7 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: https://www.google-analytics.com",
               "font-src 'self' data:",
-              "connect-src 'self' https://connect.pabbly.com https://www.google-analytics.com https://challenges.cloudflare.com",
+              "connect-src 'self' https://www.google-analytics.com https://challenges.cloudflare.com",
               "frame-src 'self' https://challenges.cloudflare.com",
               "frame-ancestors 'self'",
             ].join("; "),
