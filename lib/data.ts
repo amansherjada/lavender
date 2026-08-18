@@ -9,25 +9,25 @@ export const locations: Location[] = [
   {
     id: "loc-1",
     name: "Saadiyat Island",
-    image: "/images/cities/saadiyat-island.png",
+    image: "/images/cities/saadiyat-island.webp",
     layout: "tall",
   },
   {
     id: "loc-2",
     name: "Yas Island",
-    image: "/images/cities/yas-island.png",
+    image: "/images/cities/yas-island.webp",
     layout: "short",
   },
   {
     id: "loc-3",
     name: "Al Reef",
-    image: "/images/cities/al-reef.png",
+    image: "/images/cities/al-reef.webp",
     layout: "short",
   },
   {
     id: "loc-4",
     name: "Al Reem Island",
-    image: "/images/cities/al-reem-island.png",
+    image: "/images/cities/al-reem-island.webp",
     layout: "wide",
   },
 ];

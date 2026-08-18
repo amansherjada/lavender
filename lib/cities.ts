@@ -21,7 +21,7 @@ export const cities: City[] = [
       "Walking distance to cultural district",
       "Exclusive gated communities",
     ],
-    image: "/images/cities/saadiyat-island.png",
+    image: "/images/cities/saadiyat-island.webp",
   },
   {
     slug: "yas-island",
@@ -36,7 +36,7 @@ export const cities: City[] = [
       "Waterfront living with marina access",
       "Close to Abu Dhabi Airport",
     ],
-    image: "/images/cities/yas-island.png",
+    image: "/images/cities/yas-island.webp",
   },
   {
     slug: "al-reef",
@@ -51,7 +51,7 @@ export const cities: City[] = [
       "Close to Abu Dhabi International Airport",
       "Affordable compared to central Abu Dhabi",
     ],
-    image: "/images/cities/al-reef.png",
+    image: "/images/cities/al-reef.webp",
   },
   {
     slug: "al-reem-island",
@@ -66,7 +66,7 @@ export const cities: City[] = [
       "Oasis Residence, Mangrove Place, Marina Heights",
       "Strong investment returns and rental demand",
     ],
-    image: "/images/cities/al-reem-island.png",
+    image: "/images/cities/al-reem-island.webp",
   },
 ];
 

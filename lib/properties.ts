@@ -31,7 +31,7 @@ export const properties: PropertyListing[] = [
     slug: "this-is-the-3-bedroom-apartment",
     description:
       "This beautiful 3-bedroom apartment offers a spacious and comfortable living experience. It features a large living room, perfect for both relaxation and entertaining guests.",
-    image: "/images/properties/this-is-the-3-bedroom-apartment.png",
+    image: "/images/properties/this-is-the-3-bedroom-apartment.webp",
   },
   {
     id: 2,
@@ -47,7 +47,7 @@ export const properties: PropertyListing[] = [
     slug: "stunning-3-bedroom-duplex-with-full-water-view-marina-bay-c3",
     description:
       "Discover luxury waterfront living in this spacious 3-bedroom duplex located in the prestigious Marina Bay C3. Perfectly designed for comfort and style.",
-    image: "/images/properties/stunning-3-bedroom-duplex-with-full-water-view-marina-bay-c3.png",
+    image: "/images/properties/stunning-3-bedroom-duplex-with-full-water-view-marina-bay-c3.webp",
   },
   {
     id: 3,
@@ -63,7 +63,7 @@ export const properties: PropertyListing[] = [
     slug: "luxurious-sky-villa-oasis-residence-bedrooms-5-bathrooms-4887-sq-ft-2",
     description:
       "Welcome to your dream home in the sky! This exquisite Sky Villa in Oasis Residence blends expansive space with elegant design, offering a premium lifestyle.",
-    image: "/images/properties/luxurious-sky-villa-oasis-residence-bedrooms-5-bathrooms-4887-sq-ft-2.png",
+    image: "/images/properties/luxurious-sky-villa-oasis-residence-bedrooms-5-bathrooms-4887-sq-ft-2.webp",
   },
   {
     id: 4,
@@ -79,7 +79,7 @@ export const properties: PropertyListing[] = [
     slug: "2-bedroom-apartment-for-sale-oasis-residencepartial-mangrove-view-prime-investment-opportunity-aed-1-9-million",
     description:
       "Experience elegant living in this beautifully maintained 2-bedroom apartment at Oasis Residence. Community and partial mangrove views.",
-    image: "/images/properties/2-bedroom-apartment-for-sale-oasis-residencepartial-mangrove-view-prime-investment-opportunity-aed-1-9-million.png",
+    image: "/images/properties/2-bedroom-apartment-for-sale-oasis-residencepartial-mangrove-view-prime-investment-opportunity-aed-1-9-million.webp",
   },
   {
     id: 5,
@@ -95,7 +95,7 @@ export const properties: PropertyListing[] = [
     slug: "spacious-2-bedroom-apartment-for-sale-mangrove-placebig-terrace-sky-tower-view-aed-1-5-million",
     description:
       "Own a luxurious and spacious 2-bedroom apartment in the sought-after Mangrove Place, offering a bigger layout and stunning city and Sky Tower views.",
-    image: "/images/properties/spacious-2-bedroom-apartment-for-sale-mangrove-placebig-terrace-sky-tower-view-aed-1-5-million.png",
+    image: "/images/properties/spacious-2-bedroom-apartment-for-sale-mangrove-placebig-terrace-sky-tower-view-aed-1-5-million.webp",
   },
   {
     id: 6,
@@ -111,7 +111,7 @@ export const properties: PropertyListing[] = [
     slug: "luxury-9-bedroom-villa-al-karamah-abu-dhabispacious-layout-4-parking-spaces-9-master-bedrooms",
     description:
       "Grand 9-bedroom villa in the prestigious Al Karamah area. Exceptional space, comfort, and privacy — perfect for large families or VIP clients.",
-    image: "/images/properties/luxury-9-bedroom-villa-al-karamah-abu-dhabispacious-layout-4-parking-spaces-9-master-bedrooms.png",
+    image: "/images/properties/luxury-9-bedroom-villa-al-karamah-abu-dhabispacious-layout-4-parking-spaces-9-master-bedrooms.webp",
   },
   {
     id: 7,
@@ -127,7 +127,7 @@ export const properties: PropertyListing[] = [
     slug: "for-sale-3-bedroom-duplex-with-full-mangrove-view-oasis-residence-al-reem-island-aed-6-4-million",
     description:
       "Discover upscale living in this expansive 3-bedroom duplex at Oasis Residence, ideally located on Al Reem Island. Stunning full mangrove views.",
-    image: "/images/properties/for-sale-3-bedroom-duplex-with-full-mangrove-view-oasis-residence-al-reem-island-aed-6-4-million.png",
+    image: "/images/properties/for-sale-3-bedroom-duplex-with-full-mangrove-view-oasis-residence-al-reem-island-aed-6-4-million.webp",
   },
   {
     id: 8,
@@ -143,7 +143,7 @@ export const properties: PropertyListing[] = [
     slug: "for-sale-3-bedroom-apartment-with-city-partial-marina-views-marina-heights-1-al-reem-island-aed-2300000",
     description:
       "Step into modern living with this well-maintained 3-bedroom apartment in the desirable Marina Heights 1, Al Reem Island. Comfort, privacy, and scenic views.",
-    image: "/images/properties/for-sale-3-bedroom-apartment-with-city-partial-marina-views-marina-heights-1-al-reem-island-aed-2300000.png",
+    image: "/images/properties/for-sale-3-bedroom-apartment-with-city-partial-marina-views-marina-heights-1-al-reem-island-aed-2300000.webp",
   },
   {
     id: 9,
@@ -159,7 +159,7 @@ export const properties: PropertyListing[] = [
     slug: "elegant-3-bedroom-apartment-marina-bay-by-damac-spacious-layout-prime-location-aed-135000",
     description:
       "Experience waterfront living in this beautifully designed 3-bedroom apartment in the iconic Marina Bay by DAMAC. Located on a high floor with smart layout and comfort.",
-    image: "/images/properties/elegant-3-bedroom-apartment-marina-bay-by-damac-spacious-layout-prime-location-aed-135000.png",
+    image: "/images/properties/elegant-3-bedroom-apartment-marina-bay-by-damac-spacious-layout-prime-location-aed-135000.webp",
   },
   {
     id: 10,
@@ -175,7 +175,7 @@ export const properties: PropertyListing[] = [
     slug: "modern-1-bedroom-apartment-reflection-tower-b-sea-view-prime-location-aed-90000",
     description:
       "Step into stylish city living with this bright 1-bedroom apartment in Reflection Tower B. Perfect for singles or couples with a calming sea view.",
-    image: "/images/properties/modern-1-bedroom-apartment-reflection-tower-b-sea-view-prime-location-aed-90000.png",
+    image: "/images/properties/modern-1-bedroom-apartment-reflection-tower-b-sea-view-prime-location-aed-90000.webp",
   },
   {
     id: 11,
@@ -191,7 +191,7 @@ export const properties: PropertyListing[] = [
     slug: "spacious-3-bedroom-duplex-najmat-tower-c1-modern-living-community-view-aed-165000",
     description:
       "Live in comfort and style in this beautifully designed 3-bedroom duplex in Najmat Tower C1. Functional layout across two floors perfect for families.",
-    image: "/images/properties/spacious-3-bedroom-duplex-najmat-tower-c1-modern-living-community-view-aed-165000.png",
+    image: "/images/properties/spacious-3-bedroom-duplex-najmat-tower-c1-modern-living-community-view-aed-165000.webp",
   },
   {
     id: 12,
@@ -207,7 +207,7 @@ export const properties: PropertyListing[] = [
     slug: "fully-furnished-1-bedroom-apartment-electra-street-brand-new-building-all-utilities-included-aed-75000",
     description:
       "Move into a hassle-free lifestyle with this fully furnished 1-bedroom apartment in a brand-new building on Electra Street. All utilities included.",
-    image: "/images/properties/fully-furnished-1-bedroom-apartment-electra-street-brand-new-building-all-utilities-included-aed-75000.png",
+    image: "/images/properties/fully-furnished-1-bedroom-apartment-electra-street-brand-new-building-all-utilities-included-aed-75000.webp",
   },
   {
     id: 13,
@@ -223,7 +223,7 @@ export const properties: PropertyListing[] = [
     slug: "luxurious-5-bedroom-apartment-wave-tower-corniche-full-sea-view-all-master-bedrooms-aed-250000",
     description:
       "Live in ultimate comfort in this expansive 5-bedroom apartment in Wave Tower on Corniche Road. Full sea view, all master bedrooms.",
-    image: "/images/properties/luxurious-5-bedroom-apartment-wave-tower-corniche-full-sea-view-all-master-bedrooms-aed-250000.png",
+    image: "/images/properties/luxurious-5-bedroom-apartment-wave-tower-corniche-full-sea-view-all-master-bedrooms-aed-250000.webp",
   },
   {
     id: 14,
@@ -239,7 +239,7 @@ export const properties: PropertyListing[] = [
     slug: "modern-2-bedroom-apartment-rdk-tower-full-sea-view-prime-location-aed-152000",
     description:
       "Enjoy breathtaking sea views and a modern lifestyle in this spacious 2-bedroom apartment in the prestigious RDK Tower.",
-    image: "/images/properties/modern-2-bedroom-apartment-rdk-tower-full-sea-view-prime-location-aed-152000.png",
+    image: "/images/properties/modern-2-bedroom-apartment-rdk-tower-full-sea-view-prime-location-aed-152000.webp",
   },
   {
     id: 15,
@@ -255,7 +255,7 @@ export const properties: PropertyListing[] = [
     slug: "modern-1-bedroom-apartment-rdk-tower-unit-ull-sea-view-basement-parking-aed-102000",
     description:
       "Live by the sea in this bright and modern 1-bedroom apartment in RDK Tower. Stunning full sea views and high-end finishes.",
-    image: "/images/properties/modern-1-bedroom-apartment-rdk-tower-unit-ull-sea-view-basement-parking-aed-102000.png",
+    image: "/images/properties/modern-1-bedroom-apartment-rdk-tower-unit-ull-sea-view-basement-parking-aed-102000.webp",
   },
   {
     id: 16,
@@ -271,7 +271,7 @@ export const properties: PropertyListing[] = [
     slug: "bright-1-bedroom-apartment-rdk-tower-canal-view-basement-parking-aed-110000",
     description:
       "Experience comfortable living with beautiful canal views in this modern 1-bedroom apartment at RDK Tower. Basement parking included.",
-    image: "/images/properties/bright-1-bedroom-apartment-rdk-tower-canal-view-basement-parking-aed-110000.png",
+    image: "/images/properties/bright-1-bedroom-apartment-rdk-tower-canal-view-basement-parking-aed-110000.webp",
   },
   {
     id: 17,
@@ -287,7 +287,7 @@ export const properties: PropertyListing[] = [
     slug: "modern-studio-apartment-rdk-tower-canal-view-basement-parking-aed-78000",
     description:
       "Discover smart city living in this stylish studio apartment at RDK Tower. Beautiful canal views and high-quality finishes in a prime location.",
-    image: "/images/properties/modern-studio-apartment-rdk-tower-canal-view-basement-parking-aed-78000.png",
+    image: "/images/properties/modern-studio-apartment-rdk-tower-canal-view-basement-parking-aed-78000.webp",
   },
   {
     id: 18,
@@ -303,7 +303,7 @@ export const properties: PropertyListing[] = [
     slug: "fully-furnished-1br-canal-view-balcony-marina-square-2",
     description:
       "Enjoy stylish waterfront living in this fully furnished 1-bedroom apartment in Burooj Views, Marina Square. Canal views and spacious interiors.",
-    image: "/images/properties/fully-furnished-1br-canal-view-balcony-marina-square-2.png",
+    image: "/images/properties/fully-furnished-1br-canal-view-balcony-marina-square-2.webp",
   },
   {
     id: 19,
@@ -319,7 +319,7 @@ export const properties: PropertyListing[] = [
     slug: "located-in-mangrove-place-reem-island-shams-area",
     description:
       "Located in Mangrove Place, Reem Island, Shams Area. 18th floor, flat No. 1813. Spacious layout with two washrooms, balcony and street view.",
-    image: "/images/properties/located-in-mangrove-place-reem-island-shams-area.png",
+    image: "/images/properties/located-in-mangrove-place-reem-island-shams-area.webp",
   },
   {
     id: 20,
