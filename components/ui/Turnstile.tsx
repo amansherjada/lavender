@@ -63,7 +63,7 @@ export default function Turnstile({ onVerify, onExpire }: TurnstileProps) {
         strategy="afterInteractive"
         onReady={renderWidget}
       />
-      <div ref={containerRef} className="w-full" />
+      <div ref={containerRef} className="w-full max-w-full overflow-hidden" />
     </>
   );
 }

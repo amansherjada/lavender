@@ -49,6 +49,14 @@ body {
   width: 100%;
 }
 
+/* Turnstile widget iframe defaults to a fixed 300px width; clamp it to
+   its container regardless of whether Cloudflare's own responsive
+   sizing kicks in, so it never overflows narrow cards on mobile. */
+iframe[src*="challenges.cloudflare.com"] {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
 /* GoldButton — subtle glow pulse on hover */
 .btn-gold-solid:hover {
   box-shadow: 0 0 20px rgba(184, 150, 110, 0.25);
