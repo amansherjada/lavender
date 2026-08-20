@@ -126,7 +126,7 @@ export default function HeroSection() {
     <section
       ref={sectionRef}
       id="home"
-      className="hero-section relative min-h-[100dvh] overflow-hidden md:min-h-screen"
+      className="hero-section relative overflow-hidden md:min-h-screen"
     >
       <div className="hero-bg-image absolute inset-0 z-0">
         <Image
