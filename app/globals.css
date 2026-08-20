@@ -21,12 +21,14 @@
 
 html {
   scroll-behavior: auto;
+  overflow-x: hidden;
 }
 
 body {
   background-color: #f7f4f0;
   color: #1a0a2e;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 /* Smooth link underline effect */
