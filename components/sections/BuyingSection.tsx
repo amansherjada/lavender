@@ -6,15 +6,18 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionLabel from "@/components/ui/SectionLabel";
 import PropertyCard from "@/components/ui/PropertyCard";
-import { getSaleProperties } from "@/lib/properties";
+import type { PropertyListing } from "@/lib/properties";
 import { scrollReveal } from "@/lib/scrollReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function BuyingSection() {
+interface BuyingSectionProps {
+  properties: PropertyListing[];
+}
+
+export default function BuyingSection({ properties: saleProperties }: BuyingSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const saleProperties = getSaleProperties().slice(0, 6);
 
   useEffect(() => {
     const section = sectionRef.current;

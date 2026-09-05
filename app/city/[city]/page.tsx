@@ -31,11 +31,13 @@ export async function generateMetadata({
   };
 }
 
-export default function CityPage({ params }: PageProps) {
+export const dynamic = "force-dynamic";
+
+export default async function CityPage({ params }: PageProps) {
   const city = getCityBySlug(params.city);
   if (!city) notFound();
 
-  const cityProperties = getPropertiesByCity(city.slug);
+  const cityProperties = await getPropertiesByCity(city.slug);
 
   return (
     <main>

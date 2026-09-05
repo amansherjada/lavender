@@ -43,6 +43,7 @@ lavender-website-GCP.json
 # reference/business materials — not website code
 /old website details/
 /new logo/
+/pf details/
 
 # typescript
 *.tsbuildinfo

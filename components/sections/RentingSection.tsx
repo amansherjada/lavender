@@ -6,15 +6,18 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionLabel from "@/components/ui/SectionLabel";
 import PropertyCard from "@/components/ui/PropertyCard";
-import { getRentProperties } from "@/lib/properties";
+import type { PropertyListing } from "@/lib/properties";
 import { scrollReveal } from "@/lib/scrollReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function RentingSection() {
+interface RentingSectionProps {
+  properties: PropertyListing[];
+}
+
+export default function RentingSection({ properties: rentProperties }: RentingSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const rentProperties = getRentProperties().slice(0, 6);
 
   useEffect(() => {
     const section = sectionRef.current;

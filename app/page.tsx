@@ -8,16 +8,24 @@ import RentingSection from "@/components/sections/RentingSection";
 import HowItWorks from "@/components/sections/HowItWorks";
 import InquiryForm from "@/components/sections/InquiryForm";
 import Newsletter from "@/components/sections/Newsletter";
+import { getSaleProperties, getRentProperties } from "@/lib/properties";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const [saleProperties, rentProperties] = await Promise.all([
+    getSaleProperties(),
+    getRentProperties(),
+  ]);
+
   return (
     <main>
       <Navbar />
       <HeroSection />
-      <BuyingSection />
+      <BuyingSection properties={saleProperties.slice(0, 6)} />
       <LocationsSection />
       <WhyLavender />
-      <RentingSection />
+      <RentingSection properties={rentProperties.slice(0, 6)} />
       <HowItWorks />
       <InquiryForm />
       <Newsletter />

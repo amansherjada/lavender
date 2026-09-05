@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
-import { properties } from "@/lib/properties";
+import { getAllProperties } from "@/lib/properties";
 import { cities } from "@/lib/cities";
 
 const BASE_URL = "https://lavenderuae.com";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const properties = await getAllProperties();
   const staticRoutes = [
     "",
     "/buy",

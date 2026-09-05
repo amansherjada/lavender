@@ -22,8 +22,10 @@ interface RentPageProps {
   };
 }
 
-export default function RentPage({ searchParams }: RentPageProps) {
-  const rentProperties = filterProperties(getRentProperties(), {
+export const dynamic = "force-dynamic";
+
+export default async function RentPage({ searchParams }: RentPageProps) {
+  const rentProperties = filterProperties(await getRentProperties(), {
     type: searchParams.type,
     location: searchParams.location,
     beds: searchParams.beds,

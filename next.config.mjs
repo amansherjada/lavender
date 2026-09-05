@@ -1,9 +1,19 @@
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+
+initOpenNextCloudflareForDev();
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "static.shared.propertyfinder.ae",
+      },
+    ],
   },
   async headers() {
     return [
@@ -23,7 +33,7 @@ const nextConfig = {
               "default-src 'self'",
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://challenges.cloudflare.com",
               "style-src 'self' 'unsafe-inline'",
-              "img-src 'self' data: https://www.google-analytics.com",
+              "img-src 'self' data: https://www.google-analytics.com https://static.shared.propertyfinder.ae",
               "font-src 'self' data:",
               "connect-src 'self' https://www.google-analytics.com https://challenges.cloudflare.com",
               "frame-src 'self' https://challenges.cloudflare.com",

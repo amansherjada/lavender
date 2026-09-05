@@ -9,24 +9,18 @@ import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import PropertyCard from "@/components/ui/PropertyCard";
 import InquiryForm from "@/components/sections/InquiryForm";
 import PropertyEnquireCard from "@/components/sections/PropertyEnquireCard";
-import {
-  properties,
-  getPropertyBySlug,
-  getSimilarProperties,
-} from "@/lib/properties";
+import { getPropertyBySlug, getSimilarProperties } from "@/lib/properties";
 
 interface PageProps {
   params: { slug: string };
 }
 
-export function generateStaticParams() {
-  return properties.map((p) => ({ slug: p.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const property = getPropertyBySlug(params.slug);
+  const property = await getPropertyBySlug(params.slug);
   if (!property) {
     return { title: "Property Not Found | Lavender Real Estate" };
   }
@@ -49,11 +43,11 @@ export async function generateMetadata({
   };
 }
 
-export default function PropertyPage({ params }: PageProps) {
-  const property = getPropertyBySlug(params.slug);
+export default async function PropertyPage({ params }: PageProps) {
+  const property = await getPropertyBySlug(params.slug);
   if (!property) notFound();
 
-  const similar = getSimilarProperties(property, 3);
+  const similar = await getSimilarProperties(property, 3);
   const inquiryType = property.listingType === "sale" ? "Purchase" : "Rent";
 
   const propertyJsonLd = {
@@ -181,6 +175,20 @@ export default function PropertyPage({ params }: PageProps) {
                   </div>
                 )}
               </div>
+
+              {property.permitNumber && (
+                <div className="mt-8 rounded-xl border border-cream-border bg-white px-5 py-4">
+                  <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-text-muted">
+                    Advertising Permit
+                  </p>
+                  <p className="mt-1 font-body text-[13px] text-plum">
+                    Permit No. {property.permitNumber}
+                    {property.licenseNumber && (
+                      <> &middot; License No. {property.licenseNumber}</>
+                    )}
+                  </p>
+                </div>
+              )}
             </div>
 
             <div className="lg:col-span-2">

@@ -22,8 +22,10 @@ interface BuyPageProps {
   };
 }
 
-export default function BuyPage({ searchParams }: BuyPageProps) {
-  const saleProperties = filterProperties(getSaleProperties(), {
+export const dynamic = "force-dynamic";
+
+export default async function BuyPage({ searchParams }: BuyPageProps) {
+  const saleProperties = filterProperties(await getSaleProperties(), {
     type: searchParams.type,
     location: searchParams.location,
     beds: searchParams.beds,
