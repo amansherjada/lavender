@@ -1,0 +1,20 @@
+name: Sync Property Finder listings
+
+on:
+  schedule:
+    - cron: "0 * * * *" # every hour, on the hour
+  workflow_dispatch: {} # allows manually triggering a run from the Actions tab
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/sync-properties.mjs
+        env:
+          PROPERTYFINDER_API_KEY: ${{ secrets.PROPERTYFINDER_API_KEY }}
+          PROPERTYFINDER_API_SECRET: ${{ secrets.PROPERTYFINDER_API_SECRET }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
