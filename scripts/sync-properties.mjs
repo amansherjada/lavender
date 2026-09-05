@@ -104,7 +104,14 @@ function formatPrice(price) {
   const amount = isSale
     ? price?.amounts?.sale
     : price?.amounts?.yearly ?? price?.amounts?.monthly ?? price?.amounts?.daily;
-  const display = amount ? `AED ${amount.toLocaleString("en-US")}` : "Price on Request";
+
+  // Yearly rent and sale prices are shown bare (the site's existing
+  // convention); monthly/daily rent prices need a suffix or they read as
+  // implausibly cheap next to yearly-quoted listings on the same page.
+  const periodSuffix = !isSale && type === "monthly" ? "/month" : !isSale && type === "daily" ? "/day" : "";
+  const display = amount
+    ? `AED ${amount.toLocaleString("en-US")}${periodSuffix}`
+    : "Price on Request";
   return {
     display,
     listingType: isSale ? "sale" : "rent",
