@@ -1,5 +1,10 @@
 import { getCloudflareContext } from "@opennextjs/cloudflare";
-import { KV_PROPERTIES_KEY } from "@/lib/propertyFinder";
+
+// Written by scripts/sync-properties.mjs (run hourly via GitHub Actions,
+// see .github/workflows/sync-properties.yml) directly against this KV
+// namespace's REST API -- not by anything running inside the Worker,
+// since Property Finder's CDN blocks requests from Cloudflare's network.
+export const KV_PROPERTIES_KEY = "properties:all";
 
 export type ListingStatus = "sale" | "rent";
 
